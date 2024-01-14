@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-module for canUnlockAll method
+Module for canUnlockAll method
 """
 
 from collections import deque
@@ -8,13 +8,14 @@ from collections import deque
 
 def canUnlockAll(boxes):
     """
-    determines if all boxes can be opened
-    args:
-        boxes (list): A list of lists, where each list represents a box and
-                      contains keys to other boxes
+    Determines if all boxes can be opened.
 
-    returns:
-        bool: True if all boxes can be opened, else False
+    Args:
+        boxes (list): A list of lists, where each list represents a box and
+                      contains keys to other boxes.
+
+    Returns:
+        bool: True if all boxes can be opened, else False.
     """
     n = len(boxes)
     visited = set()
