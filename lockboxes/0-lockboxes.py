@@ -33,6 +33,9 @@ def canUnlockAll(boxes):
 
 
 if __name__ == "__main__":
+    """
+    test case
+    """
     boxes1 = [[1], [2], [3], [4], []]
     print(canUnlockAll(boxes1))
 
