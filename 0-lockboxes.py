@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """
-Module for canUnlockAll method
+module for canUnlockAll method
 """
 
 from collections import deque
 
 def canUnlockAll(boxes):
     """
-    Determines if all boxes can be opened
+    determines if all boxes can be opened
     """
     n = len(boxes)
     visited = set()
