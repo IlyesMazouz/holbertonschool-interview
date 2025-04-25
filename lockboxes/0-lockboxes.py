@@ -1,34 +1,24 @@
 #!/usr/bin/python3
 """
-Module for canUnlockAll method
+Determines if all boxes can be opened
 """
-
-from collections import deque
 
 def canUnlockAll(boxes):
     """
-    Determines if all boxes can be opened
+    Checks whether all boxes can be unlocked starting from box 0
+
     """
+    if not isinstance(boxes, list) or not all(isinstance(box, list) for box in boxes):
+        return False
+
     n = len(boxes)
-    visited = set()
-    queue = deque([0])  
+    opened = set([0])
+    keys = set(boxes[0])
 
-    while queue:
-        current_box = queue.popleft()
-        visited.add(current_box)
+    while keys:
+        key = keys.pop()
+        if key < n and key not in opened:
+            opened.add(key)
+            keys.update(boxes[key])
 
-        for key in boxes[current_box]:
-            if key not in visited and key < n:
-                queue.append(key)
-
-    return len(visited) == n
-
-if __name__ == "__main__":
-    boxes1 = [[1], [2], [3], [4], []]
-    print(canUnlockAll(boxes1))  
-
-    boxes2 = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-    print(canUnlockAll(boxes2))  
-
-    boxes3 = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-    print(canUnlockAll(boxes3))  
+    return len(opened) == n
