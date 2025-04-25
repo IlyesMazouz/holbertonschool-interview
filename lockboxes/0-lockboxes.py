@@ -3,6 +3,7 @@
 Determines if all boxes can be opened
 """
 
+
 def canUnlockAll(boxes):
     """
     Checks whether all boxes can be unlocked starting from box 0
