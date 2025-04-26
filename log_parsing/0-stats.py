@@ -1,23 +1,22 @@
 #!/usr/bin/python3
-"""
-Script that reads stdin line by line and computes metrics
-"""
+"""Script that reads stdin line by line and computes metrics"""
 
 import sys
 
 status_codes = {
-    '200': 0,
-    '301': 0,
-    '400': 0,
-    '401': 0,
-    '403': 0,
-    '404': 0,
-    '405': 0,
-    '500': 0,
+    "200": 0,
+    "301": 0,
+    "400": 0,
+    "401": 0,
+    "403": 0,
+    "404": 0,
+    "405": 0,
+    "500": 0,
 }
 
 total_size = 0
 line_count = 0
+
 
 def print_stats():
     """
@@ -27,6 +26,7 @@ def print_stats():
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
             print("{}: {}".format(code, status_codes[code]))
+
 
 try:
     for line in sys.stdin:
@@ -49,9 +49,6 @@ try:
             print_stats()
 
 except KeyboardInterrupt:
-    """
-    Handles a keyboard interruption (CTRL + C)
-    """
     print_stats()
     raise
 
