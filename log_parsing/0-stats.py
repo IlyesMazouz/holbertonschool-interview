@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 """
-Script that reads stdin line by line,
-computes metrics, and prints the statistics
+Script that reads stdin line by line, computes metrics, and prints the statistics:
+- Total file size.
+- Number of occurrences for HTTP status codes: 200, 301, 400, 401, 403, 404, 405, 500.
+The statistics are printed every 10 lines or after a keyboard interrupt.
 """
 
 import sys
 
+# Dictionary to count occurrences of specific HTTP status codes
 status_codes = {
     "200": 0,
     "301": 0,
@@ -17,13 +20,17 @@ status_codes = {
     "500": 0,
 }
 
-total_size = 0
-line_count = 0
+total_size = 0  # Total accumulated file size
+line_count = 0  # Line counter
 
 
 def print_stats():
     """
-    Prints the accumulated statistics of file size and HTTP status codes
+    Prints the accumulated statistics:
+    - Total file size.
+    - Number of occurrences for each HTTP status code that has been encountered.
+
+    Status codes that have not appeared are not printed.
     """
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
