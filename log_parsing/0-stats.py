@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Script that reads stdin line by line and computes metrics"""
+"""
+Script that reads stdin line by line,
+computes metrics, and prints the statistics
+"""
 
 import sys
 
@@ -20,7 +23,7 @@ line_count = 0
 
 def print_stats():
     """
-    Prints the accumulated statistics
+    Prints the accumulated statistics of file size and HTTP status codes
     """
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
