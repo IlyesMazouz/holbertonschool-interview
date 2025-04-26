@@ -49,6 +49,9 @@ try:
             print_stats()
 
 except KeyboardInterrupt:
+    """
+    Handles a keyboard interruption (CTRL + C)
+    """
     print_stats()
     raise
 
