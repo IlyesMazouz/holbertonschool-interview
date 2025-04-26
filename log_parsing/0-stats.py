@@ -1,61 +1,51 @@
 #!/usr/bin/python3
-"""
-This script reads stdin line by line and computes HTTP log metrics.
-It tracks the total file size and counts the occurrence of specific HTTP status codes.
-"""
 
+"""
+Reads stdin line by line and computes metrics
+"""
 import sys
 
-status_codes = {
-    "200": 0,
-    "301": 0,
-    "400": 0,
-    "401": 0,
-    "403": 0,
-    "404": 0,
-    "405": 0,
-    "500": 0,
-}
+if __name__ == "__main__":
 
-total_size = 0
-line_count = 0
+    status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    file_size = [0]
+    count = 1
 
+    def print_stats():
+        """
+        Prints file size and stats for every 10 loops
+        """
+        print("File size: {}".format(file_size[0]))
 
-def print_stats():
-    """
-    Prints the accumulated statistics
-    """
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print("{}: {}".format(code, status_codes[code]))
+        for code in sorted(status_codes.keys()):
+            if status_codes[code] != 0:
+                print("{}: {}".format(code, status_codes[code]))
 
+    def parse_stdin(line):
+        """
+        Checks the stdin for matches
+        """
+        try:
+            line = line[:-1]
+            word = line.split(" ")
 
-try:
-    for line in sys.stdin:
-        parts = line.split()
-        if len(parts) >= 7:
-            file_size = parts[-1]
-            status_code = parts[-2]
+            file_size[0] += int(word[-1])
 
-            try:
-                total_size += int(file_size)
-            except Exception:
-                pass
+            status_code = int(word[-2])
 
             if status_code in status_codes:
                 status_codes[status_code] += 1
+        except BaseException:
+            pass
 
-        line_count += 1
+    try:
+        for line in sys.stdin:
+            parse_stdin(line)
 
-        if line_count % 10 == 0:
-            print_stats()
-
-except KeyboardInterrupt:
-    """
-    Handles a keyboard interruption (CTRL + C)
-    """
+            if count % 10 == 0:
+                print_stats()
+            count += 1
+    except KeyboardInterrupt:
+        print_stats()
+        raise
     print_stats()
-    raise
-
-print_stats()
