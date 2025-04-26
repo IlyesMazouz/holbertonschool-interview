@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Reads stdin line by line and computes metrics
+This script reads stdin line by line and computes HTTP log metrics
 """
 import sys
 
@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     def print_stats():
         """
-        Prints file size and stats for every 10 loops
+        Prints the accumulated statistics of HTTP status codes and total file size
         """
         print("File size: {}".format(file_size[0]))
 
@@ -23,7 +23,8 @@ if __name__ == "__main__":
 
     def parse_stdin(line):
         """
-        Checks the stdin for matches
+        Processes a single line of stdin, extracts the status code and file size,
+        and updates the relevant statistics
         """
         try:
             line = line[:-1]
