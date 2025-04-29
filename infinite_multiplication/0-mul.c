@@ -1,5 +1,7 @@
 #include "holberton.h"
 
+#define MAX_DIGITS 5000 
+
 /**
  * is_digit - checks if a string contains only digits
  * @str: the string to check
@@ -45,7 +47,7 @@ _putchar('r');
 _putchar('r');
 _putchar('o');
 _putchar('r');
- _putchar('\n');
+_putchar('\n');
 exit(98);
 }
 
