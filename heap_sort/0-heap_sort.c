@@ -24,23 +24,23 @@ void swap(int *a, int *b)
  */
 void sift_down(int *array, size_t size, size_t root, size_t end)
 {
- size_t left, right, largest;
+size_t left, right, largest;
 
- left = 2 * root + 1;
- right = 2 * root + 2;
- largest = root;
+left = 2 * root + 1;
+right = 2 * root + 2;
+largest = root;
 
- if (left <= end && array[left] > array[largest])
-  largest = left;
- if (right <= end && array[right] > array[largest])
-  largest = right;
+if (left <= end && array[left] > array[largest])
+largest = left;
+if (right <= end && array[right] > array[largest])
+largest = right;
 
- if (largest != root)
- {
-  swap(&array[root], &array[largest]);
-  print_array(array, size);
-  sift_down(array, size, largest, end);
- }
+if (largest != root)
+{
+swap(&array[root], &array[largest]);
+print_array(array, size);
+sift_down(array, size, largest, end);
+}
 }
 
 /**
@@ -50,14 +50,14 @@ void sift_down(int *array, size_t size, size_t root, size_t end)
  */
 void heapify(int *array, size_t size)
 {
- ssize_t start = (size / 2) - 1;
- ssize_t end = size - 1;
+ssize_t start = (size / 2) - 1;
+ssize_t end = size - 1;
 
- while (start >= 0)
- {
-  sift_down(array, size, start, end);
-  start--;
- }
+while (start >= 0)
+{
+sift_down(array, size, start, end);
+start--;
+}
 }
 
 /**
@@ -67,18 +67,18 @@ void heapify(int *array, size_t size)
  */
 void heap_sort(int *array, size_t size)
 {
- ssize_t end = size - 1;
+ssize_t end = size - 1;
 
- if (!array || size < 2)
-  return;
+if (!array || size < 2)
+return;
 
- heapify(array, size);
+heapify(array, size);
 
- while (end > 0)
- {
-  swap(&array[0], &array[end]);
-  print_array(array, size);
-  end--;
-  sift_down(array, size, 0, end);
- }
+while (end > 0)
+{
+swap(&array[0], &array[end]);
+print_array(array, size);
+end--;
+sift_down(array, size, 0, end);
+}
 }
