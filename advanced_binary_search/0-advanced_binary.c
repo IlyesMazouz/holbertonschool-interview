@@ -9,14 +9,14 @@
  */
 void print_subarray(int *array, size_t start, size_t end)
 {
-size_t i;
+    size_t i;
 
-printf("Searching in array: ");
-for (i = start; i < end; i++)
-{
-printf("%d, ", array[i]);
-}
-printf("%d\n", array[end]);
+    printf("Searching in array: ");
+    for (i = start; i < end; i++)
+    {
+        printf("%d, ", array[i]);
+    }
+    printf("%d\n", array[end]);
 }
 
 /**
@@ -30,24 +30,24 @@ printf("%d\n", array[end]);
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-size_t mid;
+    size_t mid;
 
-if (!array || size == 0)
-return (-1);
+    if (!array || size == 0)
+        return (-1);
 
-mid = size / 2;
+    mid = size / 2;
 
-print_subarray(array, 0, size - 1);
+    print_subarray(array, 0, size - 1);
 
-if (array[mid] == value)
-{
-if (mid == 0 || array[mid - 1] != value)
-return (mid);
-else
-return (advanced_binary(array, mid, value));
-}
-else if (array[mid] < value)
-return (advanced_binary(array + mid + 1, size - mid - 1, value));
-else
-return (advanced_binary(array, mid, value));
+    if (array[mid] == value)
+    {
+        if (mid == 0 || array[mid - 1] != value)
+            return (mid);
+        else
+            return (advanced_binary(array, mid, value));
+    }
+    else if (array[mid] < value)
+        return (advanced_binary(array + mid + 1, size - mid - 1, value));
+    else
+        return (advanced_binary(array, mid, value));
 }
