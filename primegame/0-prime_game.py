@@ -6,7 +6,8 @@ Module for the isWinner function
 
 def sieve_of_eratosthenes(limit):
     """
-    Returns a list of booleans where True represents that the index is a prime number
+    Returns a list of booleans where True represents
+        that the index is a prime number
     """
     primes = [True] * (limit + 1)
     primes[0] = primes[1] = False
